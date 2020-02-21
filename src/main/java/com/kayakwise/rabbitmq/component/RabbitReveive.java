@@ -19,10 +19,13 @@ public class RabbitReveive {
      * @throws Exception
      */
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = "queue-1", durable = "true"),
-            exchange = @Exchange(name = "exchange-1",durable = "true",type = "topic",
-            ignoreDeclarationExceptions = "true"),
-            key = "springboot.*"
+            value = @Queue(value = "${com.kayakwise.rabbitmq.properties.queue.name}",
+                    durable = "${com.kayakwise.rabbitmq.properties.queue.durable}"),
+            exchange = @Exchange(name = "${com.kayakwise.rabbitmq.properties.exchange.name}",
+                    durable = "${com.kayakwise.rabbitmq.properties.exchange.durable}",
+                    type = "${com.kayakwise.rabbitmq.properties.exchange.type}",
+                    ignoreDeclarationExceptions = "${com.kayakwise.rabbitmq.properties.exchange.ignoreDeclarationExceptions}"),
+            key = "${com.kayakwise.rabbitmq.properties.key}"
     )
     )
     @RabbitHandler
